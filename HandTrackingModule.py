@@ -36,22 +36,22 @@ class HandDetector :
         xList=[]
         ylist=[]
         bbox=[]
-        if self.processHand.multi_hand_landmarks:  # you can use processHand.multi_hand_landmarks[0] or [1] this hand.no
-            try:
-                myHand = self.processHand.multi_hand_landmarks[handsNo]
-                for id, lm in enumerate(myHand.landmark):
-                    # print(id, lm)  # the hands has 21 points [0 to 20] each point indicate some part of hand
-                    # the problem is that the lm is in decimal and we need pixel ex:(200 w,300 h)
-                    h, w, c = img.shape
-                    cx, cy = int(lm.x * w), int(lm.y * h)  # now we have the (id,cx,cy) so we can do anything
-                    self.lmlist.append([id,cx,cy])
-                    xList.append(cx)
-                    ylist.append(cy)
-                xmin,xmax = min(xList),max(xList)
-                ymin,ymax = min(ylist),max(ylist)
-                bbox=xmin,ymin,xmax,ymax
-            except:
-                pass
+        # if self.processHand.multi_hand_landmarks:  # you can use processHand.multi_hand_landmarks[0] or [1] this hand.no
+        #     try:
+        #         myHand = self.processHand.multi_hand_landmarks[handsNo]
+        #         for id, lm in enumerate(myHand.landmark):
+        #             # print(id, lm)  # the hands has 21 points [0 to 20] each point indicate some part of hand
+        #             # the problem is that the lm is in decimal and we need pixel ex:(200 w,300 h)
+        #             h, w, c = img.shape
+        #             cx, cy = int(lm.x * w), int(lm.y * h)  # now we have the (id,cx,cy) so we can do anything
+        #             self.lmlist.append([id,cx,cy])
+        #             xList.append(cx)
+        #             ylist.append(cy)
+        #         xmin,xmax = min(xList),max(xList)
+        #         ymin,ymax = min(ylist),max(ylist)
+        #         bbox=xmin,ymin,xmax,ymax
+        #     except:
+        #         pass
 
         return self.lmlist,bbox
 
